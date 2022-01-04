@@ -22,4 +22,5 @@ class ToDoList {
     return maxId + 1;
   }
 }
+
 module.exports = ToDoList;
