@@ -10,17 +10,17 @@ class ToDoList {
     toDo.complete = true;
   }
 
-  addToDo(message, dueDate) {
-    this.toDoList.push(new ToDo(message, dueDate, this.createNewID()));
-  }
+  // addToDo(message, dueDate) {
+  //   this.toDoList.push(new ToDo(message, dueDate));
+  // }
 
-  createNewID() {
-    let maxId = this.toDoList.length > 0 ? this.toDoList[0].id : 0;
+  // createNewID() {
+  //   let maxId = this.toDoList.length > 0 ? this.toDoList[0].id : 0;
 
-    this.toDoList.forEach((val) => (val.id > maxId ? (maxId = val.id) : null));
+  //   this.toDoList.forEach((val) => (val.id > maxId ? (maxId = val.id) : null));
 
-    return maxId + 1;
-  }
+  //   return maxId + 1;
+  // }
 }
 
 module.exports = ToDoList;
