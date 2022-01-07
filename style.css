@@ -2,3 +2,8 @@
   padding-bottom: 1em;
   background-color: aqua;
 }
+
+.completedToDo {
+  padding-bottom: 1em;
+  background-color: mediumspringgreen;
+}

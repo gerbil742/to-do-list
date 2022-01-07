@@ -22,3 +22,21 @@ exports.addToDo = async (message, dueDate) => {
     console.log('There was an error: ', err);
   }
 };
+
+exports.updateToDo = async (req, res) => {
+  try {
+    console.log(req.body);
+
+    const id = req.params.id;
+
+    const query = ToDo.findByIdAndUpdate(id, { complete: true });
+    await query;
+    console.log('toDo updated');
+    res.status(200).json({
+      status: 'success',
+      message: 'Updated the toDo',
+    });
+  } catch (err) {
+    console.log('there was an error: ', err);
+  }
+};
