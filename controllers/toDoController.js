@@ -1,9 +1,11 @@
-const ToDo = require('./toDoModel');
+const ToDo = require('../models/toDoModel');
 const mongoose = require('mongoose');
 
-exports.markComplete = async (_id) => {
+exports.markComplete = async (req, res) => {
   try {
-    const query = ToDo.findByIdAndUpdate(_id, { complete: true });
+    const id = req.params.id;
+
+    const query = ToDo.findByIdAndUpdate(id, { complete: true });
     await query;
     console.log('toDo marked completed');
   } catch (err) {

@@ -1,0 +1,14 @@
+send a post request to the server with the id of the task we want to complete
+
+set that task to being crossed off or shaded green
+
+change it in the db to completed
+
+have it so that the front end automatically displays compleded tasks to green
+
+let users delete tasks completely. 
+
+let users undo tasks after reclicking
+
+have an external script file and we let on click listeners in JS?
+  - change teh html on click and send a get request to teh server
