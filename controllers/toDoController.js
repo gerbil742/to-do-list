@@ -1,24 +1,32 @@
 const ToDo = require('../models/toDoModel');
 const mongoose = require('mongoose');
 
-exports.markComplete = async (req, res) => {
+exports.getToDo = async (req, res) => {
   try {
     const id = req.params.id;
-    console.log(req);
 
-    const query = ToDo.findByIdAndUpdate(id, { complete: true });
-    await query;
-    console.log('toDo marked completed');
+    const toDo = await ToDo.findById(id);
+
+    res.status(200).json({
+      status: 'success',
+      toDo,
+    });
   } catch (err) {
     console.log('there was an error: ', err);
   }
 };
 
-exports.addToDo = async (message, dueDate) => {
+exports.createToDo = async (req, res) => {
+  const { message, dueDate } = req.body;
+
   try {
-    const query = ToDo.create({ message, dueDate });
-    await query;
-    console.log('New ToDo added');
+    const newToDo = await ToDo.create({ message, dueDate });
+
+    res.status(200).json({
+      status: 'success',
+      message: 'Created new toDo',
+      data: newToDo,
+    });
   } catch (err) {
     console.log('There was an error: ', err);
   }
@@ -37,11 +45,28 @@ exports.updateToDo = async (req, res) => {
         runValidators: true,
       }
     );
-    await query;
+    const updatedToDo = await query;
+
     console.log('toDo updated');
     res.status(200).json({
       status: 'success',
       message: 'Updated the toDo',
+      data: updatedToDo,
+    });
+  } catch (err) {
+    console.log('there was an error: ', err);
+  }
+};
+
+exports.deleteToDo = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    await ToDo.findOneAndDelete({ _id: id });
+
+    res.status(200).json({
+      status: 'success',
+      data: null,
     });
   } catch (err) {
     console.log('there was an error: ', err);
