@@ -29,6 +29,13 @@ mongoose.connect(process.env.DATABASE).then(() => {
 
 const app = express();
 
+// Middleware for reading datea from body into req.body
+app.use(express.json());
+
+// Serve static files
+app.use(express.static(`${__dirname}/public`));
+
+// Routes
 app.use('/todos', toDoRouter);
 
 const port = process.env.PORT;

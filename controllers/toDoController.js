@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 exports.markComplete = async (req, res) => {
   try {
     const id = req.params.id;
+    console.log(req);
 
     const query = ToDo.findByIdAndUpdate(id, { complete: true });
     await query;
@@ -25,11 +26,17 @@ exports.addToDo = async (message, dueDate) => {
 
 exports.updateToDo = async (req, res) => {
   try {
-    console.log(req.body);
-
     const id = req.params.id;
+    const { message, dueDate, complete } = req.body;
 
-    const query = ToDo.findByIdAndUpdate(id, { complete: true });
+    const query = ToDo.findByIdAndUpdate(
+      id,
+      { message, dueDate, complete },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
     await query;
     console.log('toDo updated');
     res.status(200).json({

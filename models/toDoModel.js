@@ -4,8 +4,10 @@ const toDoSchema = new mongoose.Schema({
   message: {
     type: String,
     required: [true, 'A to do must include a description'],
+    maxlength: 100,
+    trim: true,
   },
-  dueDate: String,
+  dueDate: Date,
   complete: { type: Boolean, default: false },
 });
 

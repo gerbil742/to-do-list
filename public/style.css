@@ -1,9 +1,9 @@
-.todo {
+.toDo {
   padding-bottom: 1em;
   background-color: aqua;
 }
 
-.completedToDo {
+.toDoCompleted {
   padding-bottom: 1em;
   background-color: mediumspringgreen;
 }
