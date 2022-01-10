@@ -12,3 +12,8 @@ let users undo tasks after reclicking
 
 have an external script file and we let on click listeners in JS?
   - change teh html on click and send a get request to teh server
+
+
+Edit:
+
+opens up a small window that lets you update the description and the due date for the todo

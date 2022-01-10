@@ -17,10 +17,10 @@ exports.getToDo = async (req, res) => {
 };
 
 exports.createToDo = async (req, res) => {
-  const { message, dueDate } = req.body;
+  const { description, dueDate } = req.body;
 
   try {
-    const newToDo = await ToDo.create({ message, dueDate });
+    const newToDo = await ToDo.create({ description, dueDate });
 
     res.status(200).json({
       status: 'success',
@@ -35,11 +35,11 @@ exports.createToDo = async (req, res) => {
 exports.updateToDo = async (req, res) => {
   try {
     const id = req.params.id;
-    const { message, dueDate, complete } = req.body;
+    const { description, dueDate, complete } = req.body;
 
     const query = ToDo.findByIdAndUpdate(
       id,
-      { message, dueDate, complete },
+      { description, dueDate, complete },
       {
         new: true,
         runValidators: true,

@@ -7,3 +7,11 @@
   padding-bottom: 1em;
   background-color: mediumspringgreen;
 }
+
+.completeTaskButton:hover {
+  background-color: yellow;
+}
+
+.undoTaskButton:hover {
+  background-color: orange;
+}

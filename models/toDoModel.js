@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const toDoSchema = new mongoose.Schema({
-  message: {
+  description: {
     type: String,
     required: [true, 'A to do must include a description'],
     maxlength: 100,
