@@ -1,17 +1,19 @@
 .toDo {
-  padding-bottom: 1em;
   background-color: aqua;
+  border: 1px solid white;
+  padding: 1em;
 }
 
-.toDoCompleted {
-  padding-bottom: 1em;
+.toDoComplete {
   background-color: mediumspringgreen;
+  border: 1px solid white;
+  padding: 1em;
 }
 
-.completeTaskButton:hover {
+.editTaskLink:hover {
   background-color: yellow;
 }
 
-.undoTaskButton:hover {
-  background-color: orange;
+.deleteTaskLink:hover {
+  background-color: red;
 }

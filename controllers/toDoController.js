@@ -1,6 +1,19 @@
 const ToDo = require('../models/toDoModel');
 const mongoose = require('mongoose');
 
+exports.getToDos = async (req, res) => {
+  try {
+    const toDos = await ToDo.find();
+
+    res.status(200).json({
+      status: 'success',
+      toDos,
+    });
+  } catch (err) {
+    console.log('there was an error: ', err);
+  }
+};
+
 exports.getToDo = async (req, res) => {
   try {
     const id = req.params.id;

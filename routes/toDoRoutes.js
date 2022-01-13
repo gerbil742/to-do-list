@@ -3,7 +3,7 @@ const toDoController = require('../controllers/toDoController');
 
 const router = express.Router();
 
-router.route('/').post(toDoController.createToDo);
+router.route('/').post(toDoController.createToDo).get(toDoController.getToDos);
 
 router
   .route('/:id')
