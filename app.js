@@ -5,6 +5,7 @@ const ToDo = require('./models/toDoModel');
 const toDoController = require('./controllers/toDoController');
 const express = require('express');
 const toDoRouter = require('./routes/toDoRoutes');
+const bodyParser = require('body-parser');
 
 dotenv.config({ path: './config.env' });
 
@@ -31,6 +32,7 @@ const app = express();
 
 // Middleware for reading datea from body into req.body
 app.use(express.json());
+app.use(express.urlencoded({ extended: true })); // to parse incoming html form posts
 
 // Serve static files
 app.use(express.static(`${__dirname}/public`));

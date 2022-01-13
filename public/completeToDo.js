@@ -15,6 +15,7 @@
 function completeToDo(toDo) {
   const complete = toDo.getAttribute('complete');
   console.log(toDo);
+
   if (complete === 'false') {
     toDo.setAttribute('complete', true);
     toDo.className = 'toDoComplete';

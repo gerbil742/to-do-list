@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head> 
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h1>Add New Todo</h1> 
+    <form id='newToDoForm' action='/todos' method="post">
+      <label for="description">Task:</label><br>
+      <input type="text" id="description" name="description"><br>
+
+      <label for="dueDate">Due By:</label><br>
+      <input type="date" id="dueDate" name="dueDate"><br>
+      <br>
+      <input class='addToDoButton' type='submit' value='Create Todo'>
+    </form>
+  </body>
+</html>
+

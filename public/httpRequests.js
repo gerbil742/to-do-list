@@ -28,3 +28,18 @@ async function getToDos() {
     console.log('there was an error: ', err);
   }
 }
+
+async function createToDo(data) {
+  try {
+    const res = await fetch(`http://localhost:3000/todos/`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    });
+    console.log(await res.json());
+  } catch (err) {
+    console.log('there was an error: ', err);
+  }
+}

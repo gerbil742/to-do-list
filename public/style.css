@@ -11,9 +11,18 @@
 }
 
 .editTaskLink:hover {
-  background-color: yellow;
+  background-color: orange;
 }
 
 .deleteTaskLink:hover {
   background-color: red;
+}
+
+.addToDoButton {
+  padding: 10px 20px;
+  background-color: white;
+}
+
+.addToDoButton:hover {
+  background-color: orange;
 }

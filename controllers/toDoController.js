@@ -31,6 +31,7 @@ exports.getToDo = async (req, res) => {
 
 exports.createToDo = async (req, res) => {
   const { description, dueDate } = req.body;
+  console.log(req.body);
 
   try {
     const newToDo = await ToDo.create({ description, dueDate });
