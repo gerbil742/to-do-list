@@ -28,6 +28,9 @@ function generateToDoDiv(toDo) {
   toDoDiv.setAttribute('complete', toDo.complete ? 'true' : 'false');
   toDoDiv.setAttribute('id', toDo._id);
   toDoDiv.setAttribute('class', toDo.complete ? 'toDoComplete' : 'toDo');
+  toDoDiv.addEventListener('click', function () {
+    completeToDo(this);
+  });
 
   const description = document.createElement('div');
   const descriptionText = document.createTextNode(toDo.description);

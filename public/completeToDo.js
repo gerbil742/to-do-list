@@ -12,23 +12,21 @@
 
 // Changing the toDo css class on click. if the the current toDo is NOT completed, on click we need to change its class to Completed (toDoCompleted). if the toDo is already Completed
 // we need to change teh class back to NOT completed (toDo) on click
-function completeToDo(id) {
-  const element = getElementById(id);
-
-  const complete = element.attributes.complete.value;
-
+function completeToDo(toDo) {
+  const complete = toDo.getAttribute('complete');
+  console.log(toDo);
   if (complete === 'false') {
-    element.attributes.complete.value = true;
-    element.className = 'toDoComplete';
-  } else {
-    element.attributes.complete.value = false;
-    element.className = 'toDo';
+    toDo.setAttribute('complete', true);
+    toDo.className = 'toDoComplete';
+  } else if (complete === 'true') {
+    toDo.setAttribute('complete', false);
+    toDo.className = 'toDo';
   }
 
   const updateData = {
-    complete: element.attributes.complete.value,
+    complete: toDo.getAttribute('complete'),
   };
 
   // send POST request with the updated "complete" data
-  updateToDo(id, updateData);
+  updateToDo(toDo.id, updateData);
 }

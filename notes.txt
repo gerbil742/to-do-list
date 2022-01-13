@@ -19,3 +19,5 @@ Edit:
 opens up a small window that lets you update the description and the due date for the todo
 
 Learned that if the functions are in a separate script, then if i use a function in another script then the function wont be defined yet. 
+
+sort by if completed first, and then by due date. things with no duedate are last? or first...
