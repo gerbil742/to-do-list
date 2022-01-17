@@ -29,6 +29,22 @@ async function getToDos() {
   }
 }
 
+async function getToDo(id) {
+  try {
+    const res = await fetch(`http://localhost:3000/todos/${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    });
+    const data = await res.json();
+    console.log(data);
+    return data.toDo;
+  } catch (err) {
+    console.log('there was an error: ', err);
+  }
+}
+
 async function createToDo(data) {
   try {
     const res = await fetch(`http://localhost:3000/todos/`, {

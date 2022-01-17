@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head> 
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <h1>Edit Todo</h1> 
+    <button class='addToDoButton' onclick="location.href='http://localhost:3000/homepage.html';">Back</button>
+    <form id='updateToDoForm' >
+      <label for="description" title= "This field is required">Task:</label><br>
+      <input type="text" id="description" name="description" required maxlength="100"><br>
+
+      <label for="dueDate">Due By:</label><br>
+      <input type="date" id="dueDate" name="dueDate"><br>
+      <br>
+      <input class='addToDoButton' type='submit' value='Edit Todo'>
+    </form>
+  </body>
+</html>
+
+<script src="javascript/httpRequests.js"></script>
+
+<script type="text/javascript">
+  async function preloadForm() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+
+    const currentToDo = await getToDo(id);
+
+    const descriptionInput = document.getElementById("description");
+    descriptionInput.setAttribute("value", currentToDo.description);
+    if (currentToDo.dueDate) {
+      
+      let date = new Date(currentToDo.dueDate);
+      
+      console.log(currentToDo.dueDate)
+      const year = date.getUTCFullYear();
+      const day = date.getUTCDate();
+      const month = date.getUTCMonth();
+
+      // Needed to pad 0's in fornt of values to get date in the right format for the html Date tag
+      const dateString = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+
+      const dueDateInput = document.getElementById("dueDate");
+      dueDateInput.setAttribute("value", dateString);
+    }
+
+  }
+
+  function updateFormDataEvent(event) {
+    event.preventDefault();
+
+    new FormData(document.getElementById("updateToDoForm")); // fires the formdata event
+  }
+
+  async function alertOnSubmit(event) {
+    let formData = event.formData;
+    let postData = {}
+      
+      for (var key of formData.keys()) {
+        postData[key] = formData.get(key);
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+
+    await updateToDo(id, postData);
+    alert("Todo updated!");
+  }
+  
+  preloadForm();
+  document.getElementById("updateToDoForm").addEventListener('submit', updateFormDataEvent);
+  document.getElementById("updateToDoForm").addEventListener('formdata', alertOnSubmit);
+</script>

@@ -40,7 +40,7 @@ function generateToDoDiv(toDo) {
   const dueDate = document.createElement('div');
 
   let date = new Date(toDo.dueDate);
-  date = date.toLocaleDateString('en-US');
+  date = date.toUTCString();
 
   // only show the dueDate field if there is one
   if (toDo.dueDate) {
@@ -53,6 +53,9 @@ function generateToDoDiv(toDo) {
   const editLink = document.createElement('span');
   editLink.appendChild(document.createTextNode(' Edit '));
   editLink.setAttribute('class', 'editTaskLink');
+  editLink.addEventListener('click', (event) => {
+    location.href = `http://localhost:3000/editToDo.html?id=${toDo._id}`;
+  });
 
   const deleteLink = document.createElement('span');
   deleteLink.appendChild(document.createTextNode(' Delete '));

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head> 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
     <h1>Add New Todo</h1> 
@@ -19,26 +19,29 @@
   </body>
 </html>
 
-<script src="httpRequests.js"></script>
+<script src="javascript/httpRequests.js"></script>
 
 <script type="text/javascript">
   function createFormDataEvent(event) {
     event.preventDefault();
 
     new FormData(document.getElementById("newToDoForm")); // fires the formdata event
-    
-    alert("New Todo Added!");
   }
 
   function alertOnSubmit(event) {
-    let formData = event.formData;
-    let postData = {}
-      
-      for (var key of formData.keys()) {
-        postData[key] = formData.get(key);
-    }
+    try {
+      let formData = event.formData;
+      let postData = {}
+        
+        for (var key of formData.keys()) {
+          postData[key] = formData.get(key);
+      }
 
-    createToDo(postData);
+      createToDo(postData);
+      alert("New Todo Added!");
+    } catch (err) {
+      alert("There was an error. Try again later.")
+    }
   }
   
   document.getElementById("newToDoForm").addEventListener('submit', createFormDataEvent);
