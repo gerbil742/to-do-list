@@ -29,6 +29,7 @@ function generateToDoDiv(toDo) {
   toDoDiv.setAttribute('id', toDo._id);
   toDoDiv.setAttribute('class', toDo.complete ? 'toDoComplete' : 'toDo');
   toDoDiv.addEventListener('click', function () {
+    event.stopPropagation();
     completeToDo(this);
   });
 
@@ -41,8 +42,11 @@ function generateToDoDiv(toDo) {
   let date = new Date(toDo.dueDate);
   date = date.toLocaleDateString('en-US');
 
-  const dueDateText = document.createTextNode('Due By: ' + date);
-  dueDate.appendChild(dueDateText);
+  // only show the dueDate field if there is one
+  if (toDo.dueDate) {
+    const dueDateText = document.createTextNode('Due By: ' + date);
+    dueDate.appendChild(dueDateText);
+  }
 
   const linkContainer = document.createElement('div');
 
@@ -53,6 +57,16 @@ function generateToDoDiv(toDo) {
   const deleteLink = document.createElement('span');
   deleteLink.appendChild(document.createTextNode(' Delete '));
   deleteLink.setAttribute('class', 'deleteTaskLink');
+  deleteLink.addEventListener('click', (event) => {
+    event.stopPropagation();
+    if (window.confirm('Are you sure you want to delete this todo?')) {
+      deleteToDo(toDo._id);
+      window.alert('todo deleted');
+      location.reload();
+    } else {
+      return;
+    }
+  });
 
   linkContainer.appendChild(editLink);
   linkContainer.appendChild(deleteLink);

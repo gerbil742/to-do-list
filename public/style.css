@@ -26,3 +26,7 @@
 .addToDoButton:hover {
   background-color: orange;
 }
+
+input:invalid {
+  border: 2px solid red;
+}

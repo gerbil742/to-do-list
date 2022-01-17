@@ -5,9 +5,11 @@
   </head>
   <body>
     <h1>Add New Todo</h1> 
-    <form id='newToDoForm' action='/todos' method="post">
-      <label for="description">Task:</label><br>
-      <input type="text" id="description" name="description"><br>
+    <button class='addToDoButton' onclick="location.href='http://localhost:3000/homepage.html';">Back</button>
+    <!-- <form id='newToDoForm' action='/todos' method="post" > -->
+    <form id='newToDoForm' >
+      <label for="description" title= "This field is required">Task:</label><br>
+      <input type="text" id="description" name="description" required maxlength="100"><br>
 
       <label for="dueDate">Due By:</label><br>
       <input type="date" id="dueDate" name="dueDate"><br>
@@ -17,3 +19,28 @@
   </body>
 </html>
 
+<script src="httpRequests.js"></script>
+
+<script type="text/javascript">
+  function createFormDataEvent(event) {
+    event.preventDefault();
+
+    new FormData(document.getElementById("newToDoForm")); // fires the formdata event
+    
+    alert("New Todo Added!");
+  }
+
+  function alertOnSubmit(event) {
+    let formData = event.formData;
+    let postData = {}
+      
+      for (var key of formData.keys()) {
+        postData[key] = formData.get(key);
+    }
+
+    createToDo(postData);
+  }
+  
+  document.getElementById("newToDoForm").addEventListener('submit', createFormDataEvent);
+  document.getElementById("newToDoForm").addEventListener('formdata', alertOnSubmit);
+</script>

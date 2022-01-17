@@ -43,3 +43,17 @@ async function createToDo(data) {
     console.log('there was an error: ', err);
   }
 }
+
+async function deleteToDo(id) {
+  try {
+    const res = await fetch(`http://localhost:3000/todos/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    });
+    console.log('deleteing ToDo: ' + id);
+  } catch (err) {
+    console.log('there was an error: ', err);
+  }
+}
