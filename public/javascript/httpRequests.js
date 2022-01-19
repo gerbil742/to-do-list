@@ -14,17 +14,28 @@ async function updateToDo(id, data) {
 }
 
 async function getToDos() {
-  const res = await fetch(`http://localhost:3000/tods/`, {
-    method: 'GET',
-    headers: {
-      'Content-type': 'application/json; charset=UTF-8',
-    },
-  });
-  // const body = await res.json();
-  // console.log(body);
+  let res;
+  try {
+    res = await fetch(`http://localhost:3000/todos/`, {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    });
 
-  //return body;
-  return res;
+    if (!res.ok) {
+      throw new Error(res.statusText);
+    }
+    // const body = await res.json();
+    // console.log(body);
+
+    //return body;
+
+    console.log(res);
+    return res;
+  } catch (err) {
+    throw err;
+  }
 
   // if (res.ok) {
   //   return body.toDos; // implicity returns a promise. Use await on the consuemer function

@@ -1,15 +1,12 @@
 async function populateToDoData() {
   try {
     const res = await getToDos();
+    const body = await res.json();
     console.log(res);
 
-    if (!res.ok) {
-      const contentDiv = document.getElementById('contentDiv');
-
-      return (contentDiv.innerHTML = await loadErrorPageHTML(res));
-    }
-
     const mainToDoDiv = document.getElementById('toDos');
+    const toDos = body.toDos;
+    console.log(toDos);
 
     for (let index = 0; index < toDos.length; index++) {
       const toDo = toDos[index];
@@ -18,20 +15,19 @@ async function populateToDoData() {
       mainToDoDiv.appendChild(toDoDiv);
     }
   } catch (err) {
-    console.log('there was an error:\n', err);
+    console.log(err);
+    console.log(err.message);
+    await loadErrorPageHTML(err);
   }
 }
 
-async function loadErrorPageHTML(res) {
-  const body = await res.json();
-  console.log(body);
+async function loadErrorPageHTML(error) {
   let html = await (await fetch('../error.html')).text();
 
-  html = html.replace('%STATUS_CODE%', res.status);
-  html = html.replace('%ERROR%', body.error);
-  html = html.replace('%MESSAGE%', body.message);
+  html = html.replace('%ERROR%', error.name);
+  html = html.replace('%MESSAGE%', error.message);
 
-  return html;
+  document.getElementById('contentDiv').innerHTML = html;
 }
 
 /*

@@ -38,12 +38,8 @@ app.use('/todos', toDoRouter);
 
 // Page not found catch all
 app.all('*', (req, res, next) => {
-  const err = new Error(`404 error. Page not found. for URL: ${req.url}`);
-  res.status(404).json({
-    status: 'fail',
-    message: err.message,
-    error: err.name,
-  });
+  //const err = new Error(`404 error. Page not found. for URL: ${req.url}`);
+  res.status(404).sendFile(`${__dirname}/public/404error.html`);
 });
 
 const port = process.env.PORT;
