@@ -14,19 +14,24 @@ async function updateToDo(id, data) {
 }
 
 async function getToDos() {
-  try {
-    const res = await fetch(`http://localhost:3000/todos/`, {
-      method: 'GET',
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    });
-    const data = await res.json();
-    console.log(data);
-    return data.toDos; // implicity returns a promise. Use await on the consuemer function
-  } catch (err) {
-    console.log('there was an error: ', err);
-  }
+  const res = await fetch(`http://localhost:3000/tods/`, {
+    method: 'GET',
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+  });
+  // const body = await res.json();
+  // console.log(body);
+
+  //return body;
+  return res;
+
+  // if (res.ok) {
+  //   return body.toDos; // implicity returns a promise. Use await on the consuemer function
+  // } else {
+  //   const errorMessage = `${res.status}\n${body.errorName}\n${body.errorMessage}`;
+  //   throw new Error(errorMessage);
+  // }
 }
 
 async function getToDo(id) {

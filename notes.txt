@@ -26,3 +26,24 @@ sort by if completed first, and then by due date. things with no duedate are las
 
 all thats left is making a sign in and doing error handling/validation
 also can add a sort, a search
+
+Errors
+make it so we send back an error response if there is an error when querying teh data. these are all gonna be like mongodb errors i believe. 
+we need to handle the error response in the front end as well. look at status code?
+
+make an error page that shows "Something went wrong" and then the status code and teh message
+
+error flow
+front end (html) just needs to display whats given.
+if given the data, then display it. if given the error, display a something went wrong instead
+retreive teh entire body of the response
+
+error handling in the front end should only be about if i dont get the data. otherwise, just display what we were sent in the res. 
+
+send back the entire response in the http methods. we will always have a response since we have a default response in the server code. i believe
+
+in the front end code. see if the response was good if it is process as normal, else process as an error. 
+
+redo the html of the page in a JS script and display that using DOM. 
+
+we also have a catch all 404 not found page 

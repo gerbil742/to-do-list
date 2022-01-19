@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 exports.getToDos = async (req, res) => {
   try {
+    //throw new Error('test error');
     const toDos = await ToDo.find();
 
     res.status(200).json({
@@ -11,6 +12,11 @@ exports.getToDos = async (req, res) => {
     });
   } catch (err) {
     console.log('there was an error: ', err);
+    res.status(400).json({
+      status: 'fail',
+      message: err.message,
+      error: err,
+    });
   }
 };
 
@@ -26,6 +32,11 @@ exports.getToDo = async (req, res) => {
     });
   } catch (err) {
     console.log('there was an error: ', err);
+    res.status(400).json({
+      status: 'fail',
+      message: err.message,
+      error: err,
+    });
   }
 };
 

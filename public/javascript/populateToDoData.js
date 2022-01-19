@@ -1,15 +1,37 @@
 async function populateToDoData() {
-  const toDos = await getToDos();
-  //console.log(toDos);
+  try {
+    const res = await getToDos();
+    console.log(res);
 
-  const mainToDoDiv = document.getElementById('toDos');
+    if (!res.ok) {
+      const contentDiv = document.getElementById('contentDiv');
 
-  for (let index = 0; index < toDos.length; index++) {
-    const toDo = toDos[index];
+      return (contentDiv.innerHTML = await loadErrorPageHTML(res));
+    }
 
-    const toDoDiv = generateToDoDiv(toDo);
-    mainToDoDiv.appendChild(toDoDiv);
+    const mainToDoDiv = document.getElementById('toDos');
+
+    for (let index = 0; index < toDos.length; index++) {
+      const toDo = toDos[index];
+
+      const toDoDiv = generateToDoDiv(toDo);
+      mainToDoDiv.appendChild(toDoDiv);
+    }
+  } catch (err) {
+    console.log('there was an error:\n', err);
   }
+}
+
+async function loadErrorPageHTML(res) {
+  const body = await res.json();
+  console.log(body);
+  let html = await (await fetch('../error.html')).text();
+
+  html = html.replace('%STATUS_CODE%', res.status);
+  html = html.replace('%ERROR%', body.error);
+  html = html.replace('%MESSAGE%', body.message);
+
+  return html;
 }
 
 /*

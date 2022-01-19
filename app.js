@@ -1,11 +1,7 @@
-const ToDoList = require('./utils/toDoList');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const ToDo = require('./models/toDoModel');
-const toDoController = require('./controllers/toDoController');
 const express = require('express');
 const toDoRouter = require('./routes/toDoRoutes');
-const bodyParser = require('body-parser');
 
 dotenv.config({ path: './config.env' });
 
@@ -39,6 +35,16 @@ app.use(express.static(`${__dirname}/public`));
 
 // Routes
 app.use('/todos', toDoRouter);
+
+// Page not found catch all
+app.all('*', (req, res, next) => {
+  const err = new Error(`404 error. Page not found. for URL: ${req.url}`);
+  res.status(404).json({
+    status: 'fail',
+    message: err.message,
+    error: err.name,
+  });
+});
 
 const port = process.env.PORT;
 const server = app.listen(port, () => {
