@@ -20,30 +20,8 @@
 </html>
 
 <script src="javascript/httpRequests.js"></script>
+<script src="javascript/addFormEventListeners.js"></script>
 
 <script type="text/javascript">
-  function createFormDataEvent(event) {
-    event.preventDefault();
-
-    new FormData(document.getElementById("newToDoForm")); // fires the formdata event
-  }
-
-  function alertOnSubmit(event) {
-    try {
-      let formData = event.formData;
-      let postData = {}
-        
-        for (var key of formData.keys()) {
-          postData[key] = formData.get(key);
-      }
-
-      createToDo(postData);
-      alert("New Todo Added!");
-    } catch (err) {
-      alert("There was an error. Try again later.")
-    }
-  }
-  
-  document.getElementById("newToDoForm").addEventListener('submit', createFormDataEvent);
-  document.getElementById("newToDoForm").addEventListener('formdata', alertOnSubmit);
+  addFormEventListeners('newToDoForm', 'POST');
 </script>

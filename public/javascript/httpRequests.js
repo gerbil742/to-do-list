@@ -1,5 +1,7 @@
 async function updateToDo(id, data) {
   try {
+    console.log(id);
+    console.log(data);
     const res = await fetch(`http://localhost:3000/todos/${id}`, {
       method: 'PATCH',
       body: JSON.stringify(data),

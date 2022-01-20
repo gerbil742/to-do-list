@@ -20,7 +20,7 @@
 
 <script src="javascript/httpRequests.js"></script>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   async function preloadForm() {
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
@@ -71,4 +71,12 @@
   preloadForm();
   document.getElementById("updateToDoForm").addEventListener('submit', updateFormDataEvent);
   document.getElementById("updateToDoForm").addEventListener('formdata', alertOnSubmit);
+</script> -->
+
+<script src="javascript/addFormEventListeners.js"></script>
+<script src="javascript/preloadFormData.js"></script>
+
+<script type="text/javascript">
+  preloadFormData();
+  addFormEventListeners('updateToDoForm', 'PATCH');
 </script>
