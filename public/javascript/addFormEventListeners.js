@@ -8,9 +8,11 @@ async function addFormEventListeners(formID, method) {
     document.getElementById(formID).addEventListener('submit', function () {
       createFormDataEvent(formID);
     });
-    document.getElementById(formID).addEventListener('formdata', function () {
-      submitFormData(method);
-    });
+    document
+      .getElementById(formID)
+      .addEventListener('formdata', async function () {
+        await submitFormData(method);
+      });
   } catch (err) {
     await loadErrorPageHTML(err);
   }

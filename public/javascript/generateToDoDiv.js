@@ -17,9 +17,9 @@ function generateToDoDiv(toDo) {
     toDoDiv.setAttribute('complete', toDo.complete ? 'true' : 'false');
     toDoDiv.setAttribute('id', toDo._id);
     toDoDiv.setAttribute('class', toDo.complete ? 'toDoComplete' : 'toDo');
-    toDoDiv.addEventListener('click', function () {
+    toDoDiv.addEventListener('click', async function () {
       event.stopPropagation();
-      completeToDo(this);
+      await completeToDo(this);
     });
 
     // Create a text div to display the toDo description
@@ -52,10 +52,10 @@ function generateToDoDiv(toDo) {
     const deleteLink = document.createElement('span');
     deleteLink.appendChild(document.createTextNode(' Delete '));
     deleteLink.setAttribute('class', 'deleteTaskLink');
-    deleteLink.addEventListener('click', (event) => {
+    deleteLink.addEventListener('click', async (event) => {
       event.stopPropagation();
       if (window.confirm('Are you sure you want to delete this todo?')) {
-        deleteToDo(toDo._id);
+        await deleteToDo(toDo._id);
         window.alert('todo deleted');
         location.reload();
       } else {
@@ -71,7 +71,7 @@ function generateToDoDiv(toDo) {
     toDoDiv.appendChild(linkContainer);
 
     return toDoDiv;
-  } catch {
-    await loadErrorPageHTML(err);
+  } catch (err) {
+    throw err;
   }
 }

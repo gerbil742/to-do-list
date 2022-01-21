@@ -1,6 +1,6 @@
 // Changing the toDo css class on click. if the the current toDo is NOT completed, on click we need to change its class to Completed (toDoCompleted). if the toDo is already Completed
 // we need to change teh class back to NOT completed (toDo) on click
-function completeToDo(toDo) {
+async function completeToDo(toDo) {
   try {
     const complete = toDo.getAttribute('complete');
     console.log(toDo);
@@ -18,8 +18,8 @@ function completeToDo(toDo) {
     };
 
     // send POST request with the updated "complete" data
-    updateToDo(toDo.id, updateData);
-  } catch {
+    await updateToDo(toDo.id, updateData);
+  } catch (err) {
     await loadErrorPageHTML(err);
   }
 }

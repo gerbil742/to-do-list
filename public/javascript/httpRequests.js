@@ -1,6 +1,6 @@
 async function updateToDo(id, data) {
   try {
-    const res = await fetch(`http://localhost:3000/tdos/${id}`, {
+    const res = await fetch(`http://localhost:3000/todos/${id}`, {
       method: 'PATCH',
       body: JSON.stringify(data),
       headers: {
