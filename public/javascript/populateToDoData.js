@@ -1,11 +1,6 @@
 async function populateToDoData() {
   try {
-    const res = await getToDos();
-    const body = await res.json();
-    console.log(res);
-
-    const toDos = body.toDos;
-    console.log(toDos);
+    const toDos = await getToDos();
 
     const mainToDoDiv = document.getElementById('toDos');
     for (let index = 0; index < toDos.length; index++) {
@@ -15,7 +10,7 @@ async function populateToDoData() {
       mainToDoDiv.appendChild(toDoDiv);
     }
   } catch (err) {
-    await loadErrorPageHTML(err, 'contentDiv');
+    await loadErrorPageHTML(err);
   }
 }
 

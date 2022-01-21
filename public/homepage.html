@@ -1,20 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html id='content'>
   <head> 
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-    <div id='contentDiv'>
-      <h1>To Do List</h1>
-      <button class='addToDoButton' onclick="location.href='http://localhost:3000/newToDo.html';">+ Todo</button>
-      <div id='toDos'>
-      </div>
+    <h1>To Do List</h1>
+    <button class='addToDoButton' onclick="location.href='http://localhost:3000/newToDo.html';">+ Todo</button>
+    <div id='toDos'>
     </div>
   </body>
 </html>
 
-<script src="javascript/httpRequests.js"></script>
-<script src="javascript/completeToDo.js"></script>
-<script src="javascript/populateToDoData.js"></script>
 <script src="javascript/loadErrorPageHTML.js"></script>
+<script src="javascript/httpRequests.js"></script>
 <script src='javascript/generateToDoDiv.js'></script>
+<script src="javascript/populateToDoData.js"></script>
+<script src="javascript/completeToDo.js"></script>
